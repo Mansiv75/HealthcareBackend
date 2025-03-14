@@ -8,6 +8,8 @@ class PatientListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
+        if self.request.user.is_superuser:  # Admin can see all patients
+            return Patient.objects.all()
         return Patient.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
@@ -18,4 +20,6 @@ class PatientDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Patient.objects.all()
         return Patient.objects.filter(user=self.request.user)
