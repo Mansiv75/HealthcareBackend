@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from .models import PatientDoctorMapping
@@ -28,7 +29,30 @@ class PatientDoctorMappingListCreateView(generics.ListCreateAPIView):
         # Save mapping
         serializer.save()
 
-class PatientDoctorMappingDetailView(generics.DestroyAPIView):
+class PatientDoctorMappingsByPatientView(generics.ListAPIView):
+    serializer_class = PatientDoctorMappingSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        patient_id = self.kwargs.get("patient_id")
+        return PatientDoctorMapping.objects.filter(patient_id=patient_id)
+
+class PatientDoctorMappingDeleteView(generics.DestroyAPIView):
     queryset = PatientDoctorMapping.objects.all()
     serializer_class = PatientDoctorMappingSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        mapping_id = kwargs.get("pk")
+
+        try:
+            mapping = PatientDoctorMapping.objects.get(id=mapping_id)
+        except PatientDoctorMapping.DoesNotExist:
+            return Response({"detail": "Mapping not found"}, status=404)
+
+        # Ensure the user owns the patient before allowing deletion
+        if mapping.patient.user != request.user:
+            raise PermissionDenied("You do not have permission to delete this mapping.")
+
+        mapping.delete()
+        return Response({"detail": "Mapping deleted successfully"}, status=204)
