@@ -64,9 +64,13 @@ python manage.py runserver
 
 ### **Swagger UI**
 📌 **URL:** `https://healthcarebackend-bmek.onrender.com/swagger/`  
+![image](https://github.com/user-attachments/assets/909afbc2-97d3-43b0-9be1-567e9ac6ff41)
+![image](https://github.com/user-attachments/assets/798e793a-0f9f-432d-9629-98aaab7a5028)
+
 
 ### **ReDoc**
 📌 **URL:** `https://healthcarebackend-bmek.onrender.com/redoc/`  
+![image](https://github.com/user-attachments/assets/2c3c602c-2b46-4de4-adda-72a471516880)
 
 ---
 
