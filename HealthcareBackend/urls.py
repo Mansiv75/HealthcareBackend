@@ -24,6 +24,7 @@ from drf_yasg import openapi
 from django.http import JsonResponse
 
 def home_view(request):
+    permission_classes = [permissions.AllowAny]
     return JsonResponse({"message": "Welcome to the Healthcare API! Please visit /swagger/ for API documentation."})
 
 schema_view = get_schema_view(
@@ -36,7 +37,7 @@ schema_view = get_schema_view(
         license=openapi.License(name="MIT License"),
     ),
     public=True,
-    permission_classes=(permissions.AllowAny,),
+    permission_classes=[permissions.AllowAny,],
 )
 
 

@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-%i5ob)8bdkrqi_dvlw)3znthbv5o2pv675xw!mtdlee5ec=m*_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["healthcarebackend-bmek.onrender.com","127.0.0.1:8000"]
+ALLOWED_HOSTS = ["healthcarebackend-bmek.onrender.com","127.0.0.1","localhost"]
 
 
 # Application definition
@@ -38,14 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    "rest_framework",
+    'rest_framework',
     "drf_yasg",
-    "rest_framework_simplejwt",
-    "users",
-    "patients",
-    "doctors",
-    "mappings",
+    'rest_framework_simplejwt',
+    'users',
+    'patients',
+    'doctors',
+    'mappings',
     
 ]
 
@@ -141,6 +142,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
