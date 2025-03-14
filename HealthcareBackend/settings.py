@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%i5ob)8bdkrqi_dvlw)3znthbv5o2pv675xw!mtdlee5ec=m*_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["healthcarebackend-bmek.onrender.com","127.0.0.1:8000"]
 
 
 # Application definition
