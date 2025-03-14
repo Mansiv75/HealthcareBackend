@@ -21,6 +21,11 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from django.http import JsonResponse
+
+def home_view(request):
+    return JsonResponse({"message": "Welcome to the Healthcare API! Please visit /swagger/ for API documentation."})
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Healthcare API",
@@ -34,7 +39,9 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
+
 urlpatterns = [
+    path('', home_view),
     path('admin/', admin.site.urls),
     path('api/auth/', include("users.urls")),
     path("api/patients/", include("patients.urls")),
@@ -45,5 +52,4 @@ urlpatterns = [
 urlpatterns += [
     path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
-    re_path(r"^swagger(?P<format>\.json|\.yaml)$", schema_view.without_ui(cache_timeout=0), name="schema-json"),
 ]
