@@ -3,7 +3,7 @@
 A Django REST Framework-based backend for managing patients, doctors, and assignments in a healthcare system.  
 
 ## **Live API URL**  
-📌 **Base URL:** `<your-render-app-url>`  
+📌 **Base URL:** `https://healthcarebackend-bmek.onrender.com`  
 
 ## **Tech Stack**  
 - Django  
@@ -63,10 +63,10 @@ python manage.py runserver
 ## **API Documentation**  
 
 ### **Swagger UI**
-📌 **URL:** `<>/swagger/`  
+📌 **URL:** `https://healthcarebackend-bmek.onrender.com/swagger/`  
 
 ### **ReDoc**
-📌 **URL:** `<>/redoc/`  
+📌 **URL:** `https://healthcarebackend-bmek.onrender.com/redoc/`  
 
 ---
 
@@ -247,9 +247,11 @@ git push origin main
    ```
 6. Set Start Command:  
    ```bash
-   gunicorn core.wsgi --log-file -
+   gunicorn Healthcarebackend.wsgi --log-file -
    ```
 7. Deploy 🚀  
+
+![image](https://github.com/user-attachments/assets/24404751-6092-4a90-abbd-f3496831b3d9)
 
 ---
 
